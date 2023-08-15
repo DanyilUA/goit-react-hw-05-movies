@@ -6,7 +6,6 @@ import TrendingMovies from 'components/TrendingMovies';
 
 const Home = () => {
     const [trendingMovies, setTrendingMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
     const location = useLocation();
 
 useEffect(() => {
@@ -15,7 +14,6 @@ useEffect(() => {
   fetchMoviesList(request)
     .then(data => {
       setTrendingMovies(data.results);
-      setIsLoading(true);
     })
     .catch(error => {
       console.error('Fetch Error:', error);

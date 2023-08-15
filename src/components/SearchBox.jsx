@@ -1,7 +1,7 @@
 import { useState } from "react";
 import css from './SerchBox.module.css';
 
-const SearchBox = onSubmit => {
+function SearchBox ({onSubmit}) {
   const [inputValue, setInputValue] = useState('');
 
   function handleInputChange(event) {
@@ -11,8 +11,8 @@ const SearchBox = onSubmit => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (inputValue.trim() === '') {
-      return;
+      if (inputValue.trim() === '') {
+        throw console.error('please put the movie name');
     }
       onSubmit(inputValue);
     setInputValue('');

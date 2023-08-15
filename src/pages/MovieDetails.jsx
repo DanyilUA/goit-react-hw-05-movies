@@ -7,22 +7,18 @@ import fetchMovieById from '../helpers/fetchMoviesById';
 const MovieDetails = () => {
     const { movieId } = useParams();
     const location = useLocation();
-    const [isLoading, setIsLoading] = useState(false);
     const [movieInfo, setMovieInfo] = useState('');
     const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
       const fetchData = async () => {
         try {
-          setIsLoading(true);
           const movie = await fetchMovieById(movieId);
           setMovieInfo(movie);
         } catch (error) {
           console.error(error);
           setMovieInfo('');
-        } finally {
-          setIsLoading(false);
-        }
+        } 
       };
       fetchData();
   

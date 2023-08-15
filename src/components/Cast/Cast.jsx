@@ -10,12 +10,10 @@ function Cast() {
     useEffect(() => {
       fetchCast(movieId)
           .then(data => {
-
           if (data.cast.length === 0) {
             console.error('no cast found');
           } else {
             setCast(data.cast);
-            console.log(data);
           }
         })
         .catch(error => {

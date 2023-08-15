@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import fetchMovieById from "helpers/fetchMoviesById";
 import { useParams } from 'react-router-dom';
 import fetchCast from "helpers/fetchCast";
 
@@ -10,7 +9,8 @@ function Cast() {
 
     useEffect(() => {
       fetchCast(movieId)
-        .then(data => {
+          .then(data => {
+
           if (data.cast.length === 0) {
             console.error('no cast found');
           } else {

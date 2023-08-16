@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SearchBox from "components/SearchBox";
+import SearchBox from "../components/SearchBox/SearchBox";
 import SearchedMovies from "components/SearchedMovies/SearchedMovies";
 import fetchMovieSearch from "helpers/fetchMovieSearh";
 import { useLocation } from "react-router-dom";

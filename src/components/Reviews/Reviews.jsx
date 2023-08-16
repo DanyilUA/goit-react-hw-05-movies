@@ -10,7 +10,6 @@ const { movieId } = useParams();
     useEffect(() => {
       fetchReviews(movieId)
         .then(data => {
-          console.log(data);
           if (data.results.length === 0) {
             console.error('no reviews found');
           } else {

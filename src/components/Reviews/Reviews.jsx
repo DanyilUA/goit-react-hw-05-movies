@@ -21,7 +21,7 @@ const { movieId } = useParams();
           console.error('new error', error);
           throw error;
         });
-    }, [movieId]);
+    }, [movieId, reviews]);
 
     return (
       <section>

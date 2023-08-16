@@ -1,33 +1,29 @@
 import { useState, useEffect } from "react";
 import SearchBox from "components/SearchBox";
-import { useLocation, useSearchParams } from 'react-router-dom';
 import SearchedMovies from "components/SearchedMovies/SearchedMovies";
 import fetchMovieSearch from "helpers/fetchMovieSearh";
+import { useLocation } from "react-router-dom";
 
 const Movies = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
-    const [queryMovie, setQueryMovie] = useState('');
     const [searchedFilms, setSearchedFilms] = useState([]);
+    const [query, setQuery] = useState('');
+  console.log('useEffect triggered with query:', query);
 
-  function handleFormSubmit(inputValue) {
-      setQueryMovie(inputValue);
-  }
 
     useEffect(() => {
-        const request = queryMovie;    
-
-      fetchMovieSearch(request).then(data => {
-        setSearchedFilms(data.results);
-        console.log('searchedFilms', searchedFilms);
-      });
-    }, [queryMovie]);
+        console.log('Fetching movies with query:', query);
+       if (query) {
+         fetchMovieSearch(query).then(data => {
+           setSearchedFilms(data.results);
+         });
+       }
+        console.log('query', query);
+    }, [query]);
 
   return (
     <>
-      {/* <input type="text" name="" id="" onChange={evt => setSearchParams({query: evt.target.value})}/>
-      <button onClick={() => setSearchParams({})}>changeInput</button> */}
-      <SearchBox onSubmit={handleFormSubmit} />
+      <SearchBox onSubmit={setQuery} currentQuery={query} />
       <SearchedMovies location={location} searchedFilms={searchedFilms} />
     </>
   );

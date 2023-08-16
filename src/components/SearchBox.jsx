@@ -1,22 +1,22 @@
-import { useState } from "react";
 import css from './SerchBox.module.css';
+import { useSearchParams } from 'react-router-dom';
 
-function SearchBox ({onSubmit}) {
-  const [inputValue, setInputValue] = useState('');
 
-  function handleInputChange(event) {
-    setInputValue(event.currentTarget.value.toLowerCase());
-  }
+function SearchBox({ onSubmit }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') || '';
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
-      if (inputValue.trim() === '') {
-        throw console.error('please put the movie name');
-    }
-      onSubmit(inputValue);
-    setInputValue('');
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    onSubmit(query);
   };
+
+const updateQueryString = evt => {
+  const inputValue = evt.target.value;
+  const nextParams = inputValue !== '' ? { query: inputValue } : {};
+  setSearchParams(nextParams);
+};
+
 
   return (
     <form className={css.searchForm} onSubmit={handleSubmit}>
@@ -31,11 +31,13 @@ function SearchBox ({onSubmit}) {
         autoFocus
         name="imageName"
         placeholder="Search movies"
-        value={inputValue}
-        onChange={handleInputChange}
+        value={query || ''}
+        onChange={updateQueryString}
       />
     </form>
   );
 };
 
 export default SearchBox;
+
+

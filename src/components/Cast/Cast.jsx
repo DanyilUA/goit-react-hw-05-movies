@@ -24,6 +24,9 @@ function Cast() {
     return (
 
       <section>
+        {cast.length === 0 && (
+          <p>We don't have information about cast</p>
+        )}
         {cast &&
           cast.map(item => {
             return (

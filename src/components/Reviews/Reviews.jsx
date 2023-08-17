@@ -14,14 +14,13 @@ const { movieId } = useParams();
             console.error('no reviews found');
           } else {
             setReviews(data.results);
-            console.log(reviews);
           }
         })
         .catch(error => {
           console.error('new error', error);
           throw error;
         });
-    }, [movieId, reviews]);
+    }, [movieId]);
 
     return (
       <section>

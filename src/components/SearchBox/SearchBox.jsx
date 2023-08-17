@@ -16,6 +16,7 @@ const updateQueryString = evt => {
   const nextParams = inputValue !== '' ? { query: inputValue } : {};
   setSearchParams(nextParams);
 };
+ 
 
 
   return (
